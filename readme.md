@@ -19,27 +19,26 @@ Everything is an `Object` that is updated at every frame. The game creator can a
 - 🎧 **Audio**: Play music and sounds easily from anywhere. You can choose to use `playSound()` or `playSoundFast()` to load the file in memory or not.
 - 👾 **Texture**: Draw your object on screen with `TextureComponent`. The engine handles texture caching so you can have multiple objects with the same texture.
 - 🚶‍♂️ **Animated Texture**: Animate objects with the `AnimatedTextureComponent`. It requires an `*.sganim` file that describes where animations start and end on a spritesheet. Once initialized, animating an object is just a matter of calling `playAnimation()`.
-- 💿 **One-way object serialization**: Construct objects from a `*.sgo` file. Within an SGO file you can specify default data for an object as well as which components it holds when instanciated and their default data. You can also specify children for the object.
-- 🌍 **One-way world serialization**: Similarly to object serialization, you can create `*.sgworld` files which contain data to instanciate and destroy multiple objects quickly.
+- 💿 **Object deserialization**: Construct objects from a `*.sgo` file. Within an SGO file you can specify default data for an object as well as which components it holds when instanciated and their default data. You can also specify children for the object.
+- 🌍 **World deserialization**: Similarly to object serialization, you can create `*.sgworld` files which contain data to instanciate and destroy multiple objects quickly.
 - 🗺 **Generate level from a [Tiled](https://www.mapeditor.org) JSON file**: Generate a level from JSON data and a tileset contained in an image file.
   You can also create an optional `*.sgmap` file which associates SGO file to a tile index in the JSON. This allows you to place game objects like player or enemy spawns, checkpoints, pick-ups, etc. directly in *Tiled*
 
-## Folder structure and how to build
+## Dependencies
 
-Since I made this project a while ago, I can't really remember how it was supposed to be built and I don't have any example projects left so the following information might be inexact or straight up wrong.
+This engine uses [SDL2](https://www.libsdl.org), [SDL_image](https://github.com/libsdl-org/SDL_image), [SDL_ttf](https://github.com/libsdl-org/SDL_ttf) and [SDL_mixer](https://github.com/libsdl-org/SDL_mixer)
 
-The Engine's source code is under `/SimpleGameEngine/include/` *.cpp* files are found in the `source` folder of every sub-folder
+## How to build
 
-You have to use the `Game` project as a template when building your game.
-You should write inside `game.cpp` `run()` the code to instanciate your `Window` and an loop running indefinitely that call `Window::processEvents()` and that calls `Window::draw()`
+First, build the SimpleGameEngine as a static library.
+
+Your game code will be in the `Game` project which should be built as a dynamic library. Build `Run` as an executable and make sure it links to your game's code, the engine and SDL.
+
+You should write inside `game.cpp`'s `run()` the code to instanciate your `Window` and an loop running indefinitely that calls `Window::processEvents()` and `Window::draw()`
 
 `Window::processEvents()` updates the `Input` sub-system so you know which key is pressed or not in your scripts by just calling `Input::getKeyUp()` or any other function
 
 `Window::draw()` automatically gathers all objects that should be drawn and draw them based on the camera's position.
-
-both the `Run` project and the `SimpleGameEngine` project should be added to your solution. You need to set `Run` as your starting project
-
-Your game executable should be found under `GameOut` after building.
 
 Your game assets have to be placed in a folder called `resources` and any script you create and want to use in serialized objects must be added to `ScriptParsing.cpp -> associationMap` as a new pair following this syntax:
 
