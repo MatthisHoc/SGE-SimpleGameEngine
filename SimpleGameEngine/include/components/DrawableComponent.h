@@ -9,7 +9,7 @@
 #include "core/Texture.h"
 
 #include "Component.h"
-
+#include "ComponentInitializationData.h"
 
 namespace sg
 {
@@ -42,7 +42,7 @@ namespace sg
 		void initializeTexture(const std::string& path) { m_texture = std::make_unique<Texture>(path); }
 
 		std::unique_ptr<Texture> m_texture;
-		SDL_Rect m_srcrect = { 0 };
+		SDL_Rect m_srcrect = { 0, 0, 0, 0 };
 		bool m_useSrcRect = false;
 		bool m_centerOrigin = false;
 		SDL_RendererFlip m_flip = SDL_FLIP_NONE;

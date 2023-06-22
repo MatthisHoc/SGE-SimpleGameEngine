@@ -5,6 +5,7 @@
 #include "core/Game.h"
 #include "core/Parser.h"
 #include "core/Object/ObjectBlueprint.h"
+#include "components/Component.h"
 
 namespace sg
 {
@@ -75,6 +76,16 @@ namespace sg
 		{
 			destroyQueue.push(child);
 		}
+	}
+
+	void Game::destroy(Component& comp)
+	{
+		destroy(comp.getObject());
+	}
+
+	void Game::destroy(Component* comp)
+	{
+		destroy(comp->getObject());
 	}
 
 	std::vector<Object*>& Game::getAllObjects()

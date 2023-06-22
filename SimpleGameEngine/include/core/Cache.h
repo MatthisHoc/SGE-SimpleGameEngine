@@ -145,8 +145,8 @@ namespace sg
 		}
 		
 	private:
-		friend CacheRef<TKey, TValue>::~CacheRef();
-
+		//friend CacheRef<TKey, TValue>::~CacheRef();
+		friend class CacheRef<TKey, TValue>;
 		void deleteReference(const TKey& key, ValueInfo& value)
 		{
 			// If there is a match, decrement ref count by one 

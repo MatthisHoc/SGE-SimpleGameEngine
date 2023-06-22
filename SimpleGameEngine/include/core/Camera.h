@@ -13,8 +13,8 @@ namespace sg
 		}
 
 	public:
-		vec2 size;
 		vec2 position;
+		vec2 size;
 	private:
 		// A Camera can only be instanciated by a window
 		friend class Window;

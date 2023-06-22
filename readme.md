@@ -4,7 +4,7 @@
 
 *For educational purposes*
 
-A project I made a while ago. It's a 2D game engine that uses [SDL](https://www.libsdl.orghttps:/) as a base.
+A project I made a while ago. It's a 2D game engine that uses [SDL2](https://www.libsdl.org) as a base.
 As it's name implies, it's a very simple game engine designed for quick prototype building.
 
 The engine's design is heavily inspired from [Unity](https://unity.com/).
@@ -30,23 +30,43 @@ This engine uses [SDL2](https://www.libsdl.org), [SDL_image](https://github.com/
 
 ## How to build
 
-First, build the SimpleGameEngine as a static library.
+This git repository contains both the engine's source as well as a project's basic structure.
 
-Your game code will be in the `Game` project which should be built as a dynamic library. Build `Run` as an executable and make sure it links to your game's code, the engine and SDL.
+### Building the engine
 
-You should write inside `game.cpp`'s `run()` the code to instanciate your `Window` and an loop running indefinitely that calls `Window::processEvents()` and `Window::draw()`
+Before building the engine you <u>must</u> copy SDL2 headers under `SimpleGameEngine/dependencies/SDL/include` these also include other SDL2 libraries headers like SDL2_image, SDL2_ttf and SDL2_mixer.
 
-`Window::processEvents()` updates the `Input` sub-system so you know which key is pressed or not in your scripts by just calling `Input::getKeyUp()` or any other function
+the `SimpleGameEngine` contains the engine's source and a makefile to build a static library
+At the root of this repository you'll find a shell script named `update-engine-deps.sh`. This shell script simply builds the engine and copies all .h files and the generated .a file to the `Game` folder.
 
-`Window::draw()` automatically gathers all objects that should be drawn and draw them based on the camera's position.
+This is useful if you want to work on the engine and immediatly test your changes in a project.
 
-Your game assets have to be placed in a folder called `resources` and any script you create and want to use in serialized objects must be added to `ScriptParsing.cpp -> associationMap` as a new pair following this syntax:
+### Making a game
+
+However if you just want to build a game you are most likely not interested in fiddling with the engine's source.
+The pre-requisites are the following:
+- Under `Game/SGE` place the engine's static library in the `lib` folder and the engine's headers in the `include` folder
+- Under `dependencies/SDL` place SDL2 headers, SDL2_image headers, SDL2_ttf headers and SDL2_mixer headers in the `include` folder and SDL2 shared libraries under `lib`
+
+Running the Makefile inside the `Game` folder produces a shared library
+
+You should then use that shared library when compiling `Run/main.cpp` to produce your game's executable
+
+#### Todo:
+Make the `Game` Makefile more flexible
+Make a `Run` Makefile
+Make a script to automatically build a game's executable that links to SDL
 
 `{"scriptName", SCRIPT_LAMBDA_SIGNATURE{ target->addScript<ScriptName>(); }}`
 
 ## Missing documentation
 
 This project was made long ago and lacks documentation.
+
+## TODO
+- Finish Makefiles and scripts to ease the game building process
+- Make the building process cross-platform (only MacOS for now)
+- Support Visual Studio .sln format
 
 ## Conclusion
 

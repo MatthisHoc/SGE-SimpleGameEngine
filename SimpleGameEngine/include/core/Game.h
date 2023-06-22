@@ -25,9 +25,9 @@ namespace sg
 		// Destroys an object, the pointer will point to trash data after the call to this function
 		static void destroy(Object* obj) { destroy(*obj); }
 		// Destroys the owning oject of this component. Use Object::removeComponent() to remove the component
-		static void destroy(Component& comp) { destroy(comp.getObject()); }
+		static void destroy(Component& comp);
 		// Destroys the owning oject of this component. Use Object::removeComponent() to remove the component
-		static void destroy(Component* comp) { destroy(comp->getObject()); }
+		static void destroy(Component* comp);
 
 		static std::vector<Object*>& getAllObjects();
 		static std::vector<Object*> getAllOrphanObjects();

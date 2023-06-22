@@ -1,6 +1,7 @@
 #include <SDL_image.h>
 
 #include "components/AnimatedTextureComponent.h"
+#include "components/ComponentInitializationData.h"
 
 #include "core/Window.h"
 #include "core/Object/Object.h"

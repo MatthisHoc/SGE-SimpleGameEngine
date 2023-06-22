@@ -5,12 +5,14 @@
 #include "core/Parser.h"
 #include "core/Object/ObjectBlueprint.h"
 
+#include "components/ComponentInitializationData.h"
 #include "components/Updatable.h"
 #include "components/AnimatedTextureComponent.h"
 #include "components/BoxComponent.h"
 #include "components/TextComponent.h"
 #include "components/TextureComponent.h"
 #include "components/TilesetComponent.h"
+#include "components/ScriptComponent.h"
 
 namespace sg
 {

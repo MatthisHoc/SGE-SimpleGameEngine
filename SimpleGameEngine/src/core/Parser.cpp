@@ -11,7 +11,7 @@ namespace sg
 		m_message += message;
 	}
 
-	const char* ParseException::what() const
+	const char* ParseException::what() const noexcept
 	{
 		return m_message.c_str();
 	}

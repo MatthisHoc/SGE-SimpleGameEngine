@@ -1,5 +1,6 @@
 #pragma once
 #include "components/Component.h"
+#include "components/ComponentInitializationData.h"
 #include "core/Object/Object.h"
 #include "core/Layers.h"
 
@@ -31,13 +32,16 @@ namespace sg
 		vec2 getMax() const;
 
 		bool active = true;
-		bool drawDebug = false;
 
 	private:
 		vec2 size;
 
 		vec2 min;
 		vec2 max;
+
+	public:
+			bool drawDebug = false;
+
 	};
 }
 

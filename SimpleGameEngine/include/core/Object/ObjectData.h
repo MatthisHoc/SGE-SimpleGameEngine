@@ -7,8 +7,7 @@
 #include <utility>
 #include <type_traits>
 
-#include "components/Component.h"
-#include "components/ScriptComponent.h"
+#include "core/Parser.h"
 #include "core/vec2.h"
 #include "core/Layers.h"
 
@@ -18,7 +17,7 @@ namespace sg
 	{
 	public:
 		ObjectException(const char* message);
-		virtual const char* what() const override;
+		virtual const char* what() const noexcept override;
 	private:
 		std::string m_message;
 	};

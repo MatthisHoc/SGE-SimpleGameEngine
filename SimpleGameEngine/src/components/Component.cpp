@@ -12,8 +12,10 @@ namespace sg
 		m_message += SDL_GetError();
 	}
 
-	const char* ComponentException::what() const
+	const char* ComponentException::what() const noexcept
 	{
 		return m_message.c_str();
 	}
+
+	Component::~Component() {}
 }

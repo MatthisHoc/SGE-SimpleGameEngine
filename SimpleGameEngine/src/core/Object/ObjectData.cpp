@@ -9,7 +9,7 @@ namespace sg
 		m_message += message;
 	}
 
-	const char* ObjectException::what() const
+	const char* ObjectException::what() const noexcept
 	{
 		return m_message.c_str();
 	}

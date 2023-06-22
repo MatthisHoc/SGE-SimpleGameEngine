@@ -10,7 +10,7 @@ namespace sg
     {
     public:
         ScriptException(const char* message);
-        virtual const char* what() const override;
+        virtual const char* what() const noexcept override;
     private:
         std::string m_message;
     };
@@ -21,7 +21,7 @@ namespace sg
         ScriptComponent() {};
         virtual ~ScriptComponent() {};
         virtual void begin() {}
-        virtual void update(float deltaSeconds) {}
+        virtual void update(__attribute__((unused)) float deltaSeconds) {}
         bool canUpdate = true;
     };
 }

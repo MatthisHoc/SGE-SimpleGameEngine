@@ -98,18 +98,18 @@ namespace sg
 		// calls initialize() and adds animations using file information
 		void initializeFromFile(const std::string& filePath);
 
+		int currentFrame;
 		Animation* currentAnim = nullptr;
+		float timeForNextFrame;
+		float nextFrameTimer;
+		bool playing;
 		// Contains the name of the animation that has the "play" specifier
 		// It is considered to be the default animation.
 		std::string defaultAnimName;
 		std::unique_ptr<AnimationCacheRef> animations = nullptr;
 
-		int currentFrame;
-		float nextFrameTimer;
 		bool timedAnimation = false;
 		float durationTimer;
-		float timeForNextFrame;
-		bool playing;
 
 		static AnimationCache animCache;
 		// Could be changed. 

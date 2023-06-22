@@ -6,14 +6,18 @@
 #include <queue>
 #include <utility>
 
-#include "components/Component.h"
-#include "components/ScriptComponent.h"
+//#include "components/Component.h"
+//#include "components/ScriptComponent.h"
+#include "components/ComponentInitializationData.h"
 #include "core/vec2.h"
 #include "core/Layers.h"
 #include "core/Object/ObjectData.h"
 
 namespace sg
 {
+	class Component;
+	class ScriptComponent;
+
 	class Object
 	{
 	public:
@@ -235,7 +239,7 @@ namespace sg
 		const std::string& getName() const { return m_data.getName(); }
 		void setName(const std::string& newName) { m_data.setName(newName); }
 
-		const unsigned int getNumScript() const { return static_cast<unsigned int>(m_scripts.size()); }
+		unsigned int getNumScript() const { return static_cast<unsigned int>(m_scripts.size()); }
 
 		bool isOrphan() const { return m_parent == nullptr; }
 		std::vector<Object*> getChildren() { return m_children; }

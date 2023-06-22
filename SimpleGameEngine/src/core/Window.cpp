@@ -29,7 +29,7 @@ namespace sg
 		}
 	}
 
-	const char* WindowException::what() const
+	const char* WindowException::what() const noexcept
 	{
 		return m_message.c_str();
 	}
@@ -251,7 +251,8 @@ namespace sg
 			textureInfo.y = (int)(objCamRelative.y);
 		}
 
-		SDL_RenderCopyEx(m_renderer, component->getTexture()->get(), &(component->getSourceRect()), &textureInfo, 0.0f, nullptr, component->getFlipValue());
+		SDL_Rect compSourceRect = component->getSourceRect();
+		SDL_RenderCopyEx(m_renderer, component->getTexture()->get(), &compSourceRect, &textureInfo, 0.0f, nullptr, component->getFlipValue());
 	}
 
 	std::vector<DrawablePair> Window::getAllDrawableObjects()

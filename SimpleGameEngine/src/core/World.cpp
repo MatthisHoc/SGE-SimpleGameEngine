@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "assistants/Resources.h"
 #include "core/Parser.h"
 #include "core/Game.h"
 
@@ -14,7 +15,7 @@ namespace sg
 		m_message += message;
 	}
 
-	const char* WorldException::what() const
+	const char* WorldException::what() const noexcept
 	{
 		return m_message.c_str();
 	}

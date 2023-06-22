@@ -18,7 +18,7 @@ namespace sg
 	{
 	public:
 		WindowException(const char* message, bool sdlError = true);
-		virtual const char* what() const override;
+		virtual const char* what() const noexcept override;
 	private:
 		std::string m_message;
 	};

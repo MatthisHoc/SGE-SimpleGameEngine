@@ -14,7 +14,7 @@ namespace sg
 	{
 	public:
 		TextureException(const char* message);
-		virtual const char* what() const override;
+		virtual const char* what() const noexcept override;
 	private:
 		std::string m_message;
 	};

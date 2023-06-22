@@ -12,7 +12,7 @@ namespace sg
 		m_message += SDL_GetError();
 	}
 
-	const char* AudioException::what() const
+	const char* AudioException::what() const noexcept
 	{
 		return m_message.c_str();
 	}

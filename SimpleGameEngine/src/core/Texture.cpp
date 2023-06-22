@@ -12,7 +12,7 @@ namespace sg
 
 	TextureException::TextureException(const char* message) : m_message(message) {}
 
-	const char* TextureException::what() const { return m_message.c_str(); }
+	const char* TextureException::what() const noexcept { return m_message.c_str(); }
 
 	void Texture::makeTextureFromCache(const std::string& path)
 	{
@@ -104,7 +104,7 @@ namespace sg
 		{
 			int w, h;
 			SDL_QueryTexture(texture.get(), nullptr, nullptr, &w, &h);
-			SDL_Rect textureInfo{ 0 };
+			SDL_Rect textureInfo{ 0, 0, 0, 0 };
 			textureInfo.x = (int)position.x;
 			textureInfo.y = (int)position.y;
 			textureInfo.w = w;
