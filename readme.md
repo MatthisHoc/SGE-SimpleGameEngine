@@ -34,23 +34,25 @@ This git repository contains both the engine's source as well as a project's bas
 
 ### Building the engine
 
-Before building the engine you <u>must</u> copy SDL2 headers under `SimpleGameEngine/dependencies/SDL/include` these also include other SDL2 libraries headers like SDL2_image, SDL2_ttf and SDL2_mixer.
+Before building the engine you <u>must</u> copy SDL2 headers under `SimpleGameEngine/dependencies/SDL/include` don't forget to put other SDL2 libraries headers like SDL2_image, SDL2_ttf and SDL2_mixer.
 
-the `SimpleGameEngine` contains the engine's source and a makefile to build a static library
+the `SimpleGameEngine` folder contains the engine's source and a makefile to build a static library
 At the root of this repository you'll find a shell script named `update-engine-deps.sh`. This shell script simply builds the engine and copies all .h files and the generated .a file to the `Game` folder.
 
 This is useful if you want to work on the engine and immediatly test your changes in a project.
 
 ### Making a game
 
-However if you just want to build a game you are most likely not interested in fiddling with the engine's source.
+If you just want to build a game you are most likely not interested in fiddling with the engine's source.
 The pre-requisites are the following:
-- Under `Game/SGE` place the engine's static library in the `lib` folder and the engine's headers in the `include` folder
+- Under `Game/SGE` place the engine's static library in the `lib` folder and the engine's headers in the `include` folder. This GitHub repository has a release which includes the built engine, it's sources and the include files.
 - Under `dependencies/SDL` place SDL2 headers, SDL2_image headers, SDL2_ttf headers and SDL2_mixer headers in the `include` folder and SDL2 shared libraries under `lib`
 
 Running the Makefile inside the `Game` folder produces a shared library
 
 You should then use that shared library when compiling `Run/main.cpp` to produce your game's executable
+
+**Currently SDL is linked dynamically to both the Game shared library and the executable. Ideally SDL would be statically linked to the game's executable to make it more portable but makefiles aren't complete yet**
 
 #### Todo:
 Make the `Game` Makefile more flexible
