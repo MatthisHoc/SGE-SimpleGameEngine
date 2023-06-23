@@ -10,7 +10,7 @@ As it's name implies, it's a very simple game engine designed for quick prototyp
 The engine's design is heavily inspired from [Unity](https://unity.com/).
 Everything is an `Object` that is updated at every frame. The game creator can add `Components` to enrich objects and create his own `ScriptComponents` where their write the logical behaviour of each object.
 
-[SMB1 1st level recreated in the Simple Game Engine](assets/20230616_120623_image.png)
+![SMB1 1st level recreated in the Simple Game Engine](assets/20230616_120623_image.png)
 
 ### Some of the engine's features include:
 
