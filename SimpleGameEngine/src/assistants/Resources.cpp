@@ -7,15 +7,20 @@ namespace sg
 		// Debug configuration uses the folder located in the project directory
 #ifdef _DEBUG
 		return RESOURCES_PATH + relativePath;
-#else
+#elif defined(WIN32)
 		return "resources\\" + relativePath;
+#else
+		return "resources/" + relativePath;
 #endif
 	}
 
 	std::string Resources::relativePath(const std::string& fullPath)
 	{
+#ifdef WIN32
 		size_t pos = fullPath.find("resources\\");
-
+#else
+		size_t pos = fullPath.find("resources/");
+#endif
 		if (pos == std::string::npos) return fullPath;
 		else
 		{
