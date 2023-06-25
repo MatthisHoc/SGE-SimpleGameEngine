@@ -9,6 +9,8 @@
 #include <string>
 #include <unordered_map>
 
+#include "scripts/TestScript/TestScript.h"
+
 #define SCRIPT_LAMBDA_SIGNATURE [](__attribute__((unused))Object* target) // <-- Technically target is not an unused variable but because we have an empty lambda for demonstration it will generate a compiler warning if the attribute isn't here
 
 // This file defines the sg::Object::addScriptFromStr function.
@@ -23,7 +25,7 @@ namespace sg
 		using StrLambdaMap = std::unordered_map<std::string, std::function<void(Object*)>>;
 		static const StrLambdaMap associationMap =
 		{
-			{ "scriptName", SCRIPT_LAMBDA_SIGNATURE{ /*target->addScript<ScriptName>();*/ } },
+			{ "TestScript", SCRIPT_LAMBDA_SIGNATURE{ target->addScript<TestScript>(); } },
 		};
 
 		StrLambdaMap::const_iterator kvp = associationMap.find(scriptName);

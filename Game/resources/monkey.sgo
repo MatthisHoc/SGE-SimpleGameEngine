@@ -1,0 +1,16 @@
+<Monkey | layer-world>
+
+    position = 0, 0
+    size = 1, 1
+
+    <Components>
+        <TextureComponent>
+            path = monkey.png
+        </TextureComponent>
+    </Components>
+
+    <Scripts>
+        TestScript
+    </Scripts>
+
+</Monkey>
