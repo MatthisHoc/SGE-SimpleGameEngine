@@ -43,32 +43,42 @@ This is useful if you want to work on the engine and immediatly test your change
 
 ### Making a game
 
+#### Pre-requisites
 If you just want to build a game you are most likely not interested in fiddling with the engine's source.
 The pre-requisites are the following:
 - Under `Game/SGE` place the engine's static library in the `lib` folder and the engine's headers in the `include` folder. This GitHub repository has a release which includes the built engine, it's sources and the include files.
 - Under `dependencies/SDL` place SDL2 headers, SDL2_image headers, SDL2_ttf headers and SDL2_mixer headers in the `include` folder and SDL2 shared libraries under `lib`
 
-Running the Makefile inside the `Game` folder produces a shared library
+#### Adding assets
+Any of your game's assets should be placed under the `resources` folder.
+The engine's API is designed so that whenever you have to specify a filepath, it should always be a relative path from the inside of `resources`.
 
-You should then use that shared library when compiling `Run/main.cpp` to produce your game's executable
+#### Adding scripts
+Create a new folder within the `scripts` folder with the name of your script. Place your .cpp and .h files inside that folder
 
-**Currently SDL is linked dynamically to both the Game shared library and the executable. Ideally SDL would be statically linked to the game's executable to make it more portable but makefiles aren't complete yet**
-
-#### Todo:
-Make the `Game` Makefile more flexible
-Make a `Run` Makefile
-Make a script to automatically build a game's executable that links to SDL
+If you want to make use of the deserialization feature with your scripts, you must populate the `std::map` inside `ScriptParsing.cpp`
+which is used to associate a script name as a string to a function that adds the script to a target object.
 
 `{"scriptName", SCRIPT_LAMBDA_SIGNATURE{ target->addScript<ScriptName>(); }}`
+
+#### Building the game
+Run the python script within the `Build` folder to automatically generate an executable inside `GameOut` (Currently only on MacOS)
+Alternativly:
+- Running the Makefile inside the `Game` folder produces a shared library
+- Running the Makefile inside the `Build`folder produces an executable. You might need to manually create the GameOut folder and place your dylib in it
 
 ## Missing documentation
 
 This project was made long ago and lacks documentation.
 
 ## TODO
-- Finish Makefiles and scripts to ease the game building process
+- Add a config file to change the Game's name
 - Make the building process cross-platform (only MacOS for now)
 - Support Visual Studio .sln format
+
+## Known issues
+- When making a .app folder, the game doesn't find the dylib despite rpath being set
+- Improve SDL2 linking to make applications portable
 
 ## Conclusion
 
